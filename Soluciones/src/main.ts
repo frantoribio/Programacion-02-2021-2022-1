@@ -1,31 +1,20 @@
 import read from 'readline-sync';
-import chalk from 'chalk';
+import aux from './mod-2-19';
 
-// Suma de los n primeros números primos
+// Bisiesto
+let año: number;
+let esBisiesto = false;
+let mes: string;
 
-let limite: number = 0;
-let suma: number = 0;
+año = read.questionInt('Ingrese un año: ');
+mes = read.question('Ingrese un mes: ');
 
-do {
-  limite = read.questionInt(chalk.yellow('Dime un número: '));
-} while (limite <= 0);
 
-// Repetimos hasta el limite
-for (let num = 2; num <= limite; num++) {
-  // Vamos a comprobar si es primo
-  let primo = true;
-  let contador = 2;
-  while ((primo) && (contador != num)) {
-    if (num % contador == 0)
-      primo = false;
-    contador++;
-  }
+esBisiesto = aux.esBisiesto(año);
 
-  // Si es primo, lo sumamos
-  if (primo) 
-    suma += num;
+if (esBisiesto)
+  console.log("El año: " + año + " es bisiesto")
+else
+  console.log("El año: " + año + " no es bisiesto")
 
-}
-
-console.log(chalk.green("El resultado de la suma de los números primos entre 1 y " + limite + " es: " + suma));
-
+aux.imprimirDias(mes, esBisiesto);
